@@ -10,8 +10,6 @@ public class ConfigFileReader {
     private Properties properties;
     private final String propertyFilePath = "src\\main\\resources\\conf.properties";
 
-
-
     public ConfigFileReader() {
         BufferedReader reader;
         try {

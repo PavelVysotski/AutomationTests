@@ -1,6 +1,7 @@
 package bookingTest;
 
 import config.ConfigFileReader;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -44,6 +45,8 @@ public class TestPages extends BaseTest {
         homePage.uploadSite(configFileReader.getBaseUrl());
         findAirTickets.chooseAirTickets();
         findAirTickets.chooseDirection("Стамбул", "Минск");
+        findAirTickets.findTickets();
+
     }
 
     @Test(testName = "Find car")
@@ -55,6 +58,38 @@ public class TestPages extends BaseTest {
         findAuto.chooseRentalCar();
         findAuto.choosePlaceOfReceipt("Минск");
         findAuto.chooseDate();
+
+
+    }
+
+    @Test(testName = "Search leisure options")
+    public void findLeisureOptions() {
+        HomePage homePage = PageFactory.initElements(driver, HomePage.class);
+        LeisureOptions leisureOptions = PageFactory.initElements(driver, LeisureOptions.class);
+
+        homePage.uploadSite(configFileReader.getBaseUrl());
+        leisureOptions.enterSearch("Санкт-Петербург");
+
+    }
+
+    @Test(testName = "Choose from propose towns")
+    public void chooseProposeTownForRelax() {
+        HomePage homePage = PageFactory.initElements(driver, HomePage.class);
+        LeisureOptions leisureOptions = PageFactory.initElements(driver, LeisureOptions.class);
+
+        homePage.uploadSite(configFileReader.getBaseUrl());
+        leisureOptions.choiceFromTheProposed();
+        int i = 1;
+    }
+
+    @Test(testName = "Find taxi")
+    public void findTaxi() {
+        HomePage homePage = PageFactory.initElements(driver, HomePage.class);
+        FindTaxi findTaxi = PageFactory.initElements(driver, FindTaxi.class);
+
+        homePage.uploadSite(configFileReader.getBaseUrl());
+        findTaxi.chooseTaxiOptions();
+        int i = 1;
     }
 
 

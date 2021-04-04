@@ -19,7 +19,7 @@ public class FindAirTickets {
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }
 
-    @FindBy(xpath = "//*[@id='b2indexPage']/header/nav[2]/ul/li[2]/a")
+    @FindBy(xpath = "//ul[@class='bui-tab__nav']//li[2]//a[@class='bui-tab__link']")
     private WebElement airTicketsButton;
 
     @FindBy(xpath = "//div[@aria-label='Откуда']")
@@ -34,8 +34,12 @@ public class FindAirTickets {
     @FindBy(xpath = "//input[@aria-label='Место назначения']")
     private WebElement enterDestinationAirport;
 
+    @FindBy(xpath = "//div[@class='col _iac _iad _iae _iaa _iab _iys _iyv _iyq _iAU _iAV _izh _iaR _h-8 _63 centre']")
+    private WebElement findButton;
+
     private By waitAirTicketsPage = By.xpath("//div[@class='keel-container s-t-bp']");
     private By airportList = By.xpath("//ul[@class='flight-smarty']/li");
+
 
     public void chooseAirTickets() {
         airTicketsButton.click();
@@ -52,7 +56,6 @@ public class FindAirTickets {
         enterDestinationAirport.clear();
         enterDestinationAirport.sendKeys(destination);
         chooseAirport(destination);
-        int i =1;
     }
 
     public void chooseAirport(String airportName) {
@@ -69,5 +72,7 @@ public class FindAirTickets {
         }
     }
 
-
+    public void findTickets() {
+        findButton.click();
+    }
 }

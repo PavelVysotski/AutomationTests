@@ -19,7 +19,7 @@ public class FindAuto {
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }
 
-    @FindBy(xpath = "//*[@id='b2indexPage']/header/nav[2]/ul/li[3]/a")
+    @FindBy(xpath = "//ul[@class='bui-tab__nav']//li[3]//a[@class='bui-tab__link']")
     private WebElement carRental;
 
     @FindBy(xpath = "//input[@placeholder='Место получения']")

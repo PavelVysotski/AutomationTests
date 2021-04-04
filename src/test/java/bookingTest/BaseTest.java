@@ -15,10 +15,10 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-//    @AfterTest
-//    public void tearDown() {
-//        driver.close();
-//        driver.quit();
-//        driver = null;
-//    }
+    @AfterTest
+    public void tearDown() {
+        driver.close();
+        driver.quit();
+        driver = null;
+    }
 }
