@@ -23,12 +23,17 @@ public class FindTaxi {
     @FindBy(xpath = "//ul[@class='bui-segmented-control__list']//li[3]//label[@for='sortbutton_2']")
     private WebElement chooseTaxiOptions;
 
+    @FindBy(xpath = "//div[@data-num-passengers='6']/div//div[@class='bui-group bui-group--inline bui-card__actions www-taxi-types__book-cta']/button")
+    private WebElement findTaxiButton;
+
     private By chooseTaxiList = By.xpath("//ul[@class='bui-segmented-control__list']/li");
 
 
-    public void chooseTaxiOptions(){
+    public void chooseTaxiOptions() throws InterruptedException {
         taxiButton.click();
         chooseTaxiOptions.click();
+        Thread.sleep(5000);
+        findTaxiButton.click();
     }
 
 }

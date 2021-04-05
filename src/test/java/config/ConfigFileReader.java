@@ -60,7 +60,7 @@ public class ConfigFileReader {
     public String getBaseUrl() {
         String url = properties.getProperty("baseUrl");
         if (url != null) return url;
-        else throw new RuntimeException("url not specified in the Configuration.properties file.");
+        else throw new RuntimeException("url not specified in the configuration.properties file.");
     }
 
 

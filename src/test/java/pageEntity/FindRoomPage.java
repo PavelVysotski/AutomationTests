@@ -87,8 +87,8 @@ public class FindRoomPage {
             if (!date.getText().contains(monthName)) {
                 searchMonthNext.click();
                 searchMonth(monthName);
+                break;
             }
-            break;
         }
     }
 

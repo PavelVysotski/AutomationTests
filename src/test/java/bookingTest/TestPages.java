@@ -1,7 +1,6 @@
 package bookingTest;
 
 import config.ConfigFileReader;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +13,7 @@ public class TestPages extends BaseTest {
     @Test
     public void login() {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
-        SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
+        SignUp signUpPage = PageFactory.initElements(driver, SignUp.class);
 
         homePage.enterAccount(configFileReader.getBaseUrl());
         signUpPage.fillEmail(configFileReader.getEmail());
@@ -38,37 +37,40 @@ public class TestPages extends BaseTest {
 
 
     @Test(testName = "Find air tickets")
-    public void findAirTickets() throws InterruptedException {
+    public void findAirTickets() {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         FindAirTickets findAirTickets = PageFactory.initElements(driver, FindAirTickets.class);
 
         homePage.uploadSite(configFileReader.getBaseUrl());
         findAirTickets.chooseAirTickets();
-        findAirTickets.chooseDirection("Стамбул", "Минск");
-        findAirTickets.findTickets();
+        findAirTickets.chooseDirection("Минск", "Стамбул");
+        findAirTickets.chooseDate("08.04.2021", "20.04.2021");
+int i=1;
 
     }
 
     @Test(testName = "Find car")
-    public void findCarRental() {
+    public void findCarRental() throws InterruptedException {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         FindAuto findAuto = PageFactory.initElements(driver, FindAuto.class);
 
         homePage.uploadSite(configFileReader.getBaseUrl());
         findAuto.chooseRentalCar();
         findAuto.choosePlaceOfReceipt("Минск");
-        findAuto.chooseDate();
+        //        findAuto.chooseDate();
+        int i =1;
 
 
     }
 
     @Test(testName = "Search leisure options")
-    public void findLeisureOptions() {
+    public void findLeisureOptions() throws InterruptedException {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         LeisureOptions leisureOptions = PageFactory.initElements(driver, LeisureOptions.class);
 
         homePage.uploadSite(configFileReader.getBaseUrl());
         leisureOptions.enterSearch("Санкт-Петербург");
+        int i=1;
 
     }
 
@@ -83,7 +85,7 @@ public class TestPages extends BaseTest {
     }
 
     @Test(testName = "Find taxi")
-    public void findTaxi() {
+    public void findTaxi() throws InterruptedException {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         FindTaxi findTaxi = PageFactory.initElements(driver, FindTaxi.class);
 

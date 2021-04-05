@@ -38,11 +38,12 @@ public class LeisureOptions {
 
     private By proposedTownNorthAmerica = By.xpath("//div[@class='bui-tab__content bui-tab__content--selected']/div/div/div");
 
-    public void enterSearch(String townName) {
+    public void enterSearch(String townName) throws InterruptedException {
         leisureOptionsButton.click();
         searchField.clear();
         searchField.click();
         searchField.sendKeys(townName);
+        Thread.sleep(5000);
         findButton.click();
 
     }

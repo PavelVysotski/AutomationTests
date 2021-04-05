@@ -10,12 +10,12 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class SignUpPage {
+public class SignUp {
 
     private WebDriver webDriver;
     private WebDriverWait wait;
 
-    public SignUpPage(WebDriver webDriver) {
+    public SignUp(WebDriver webDriver) {
         this.webDriver = webDriver;
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }

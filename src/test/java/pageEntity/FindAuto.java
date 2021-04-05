@@ -3,11 +3,15 @@ package pageEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class FindAuto {
 
@@ -37,6 +41,9 @@ public class FindAuto {
     @FindBy(xpath = "//div[@class='sb-searchbox-submit-col -submit-button ']")
     private WebElement submitButton;
 
+    private By autoList = By.xpath("//ul[@class='c-autocomplete__list sb-autocomplete__list']/li");
+    private By waitAutoList = By.xpath("//ul[@class='c-autocomplete__list sb-autocomplete__list']");
+
 
     private By waitCarRentalPage = By.xpath("//div[@class='xpi__searchbox rentalcars']");
 
@@ -45,9 +52,19 @@ public class FindAuto {
         wait.until(ExpectedConditions.visibilityOfElementLocated(waitCarRentalPage));
     }
 
-    public void choosePlaceOfReceipt(String place) {
+    public void choosePlaceOfReceipt(String place) throws InterruptedException {
         placeOfReceipt.click();
         placeOfReceipt.sendKeys(place);
+        wait.until(w -> w.findElements(autoList).size() > 1);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(waitAutoList));
+        List<WebElement> list = webDriver.findElements(autoList);
+        for (WebElement pl : list) {
+            if (pl.getAttribute("data-value").contains(place)) {
+                webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+                break;
+            }
+        }
     }
 
     public void chooseDate() {
@@ -55,4 +72,5 @@ public class FindAuto {
         nextButton.click();
         submitButton.click();
     }
+
 }
