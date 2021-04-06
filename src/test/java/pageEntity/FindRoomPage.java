@@ -4,11 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FindRoomPage {
@@ -20,19 +16,19 @@ public class FindRoomPage {
     }
 
     @FindBy(xpath = "//input[@type='search']")
-    private WebElement searchPlace;
+    private WebElement place;
 
-    @FindBy(xpath = "//*[@id='frm']/div[1]/div[2]/div[1]") //TODO
-    private WebElement startDate;
+    @FindBy(xpath = "//div[@class='xp__dates xp__group']")
+    private WebElement date;
 
     @FindBy(xpath = "//div[@class='bui-calendar']//div[@data-bui-ref='calendar-next']")
-    private WebElement searchMonthNext;
+    private WebElement monthNext;
 
     @FindBy(xpath = "//div[@class='bui-calendar']//td[@data-date='2021-09-24']")
-    private WebElement chooseStartDate;
+    private WebElement startDate;
 
     @FindBy(xpath = "//div[@class='bui-calendar']//td[@data-date='2021-10-01']")
-    private WebElement chooseEndDate;
+    private WebElement endDate;
 
     @FindBy(xpath = "//label[@id='xp__guests__toggle']")
     private WebElement guestButton;
@@ -44,7 +40,7 @@ public class FindRoomPage {
     private WebElement childrenNumberPlus;
 
     @FindBy(xpath = "//button[@class='sb-searchbox__button ']")
-    private WebElement searchButton;
+    private WebElement submitButton;
 
     @FindBy(xpath = "//div[@data-block-id='heading']//h1")
     private WebElement successSearch;
@@ -52,18 +48,18 @@ public class FindRoomPage {
     private By dateDescription = By.xpath("//div[@class='bui-calendar__month']");
 
     public void fillLocation(String location) {
-        searchPlace.sendKeys(location);
+        place.sendKeys(location);
     }
 
     public void chooseStartDate(String startNameMonth) {
-        startDate.click();
+        date.click();
         searchMonth(startNameMonth);
-        chooseStartDate.click();
+        startDate.click();
     }
 
     public void chooseEndDate(String endNameMonth){
         searchMonth(endNameMonth);
-        chooseEndDate.click();
+        endDate.click();
     }
 
     public void chooseGuests() {
@@ -73,7 +69,7 @@ public class FindRoomPage {
     }
 
     public void startSearch() {
-        searchButton.click();
+        submitButton.click();
     }
 
     public String confirmLogin() {
@@ -85,11 +81,10 @@ public class FindRoomPage {
         List<WebElement> startMonth = webDriver.findElements(dateDescription);
         for (WebElement date : startMonth) {
             if (!date.getText().contains(monthName)) {
-                searchMonthNext.click();
+                monthNext.click();
                 searchMonth(monthName);
-                break;
             }
+            break;
         }
     }
-
 }

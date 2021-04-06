@@ -37,6 +37,4 @@ public class HomePage {
         enterAccount.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(waitEnterEmail));
     }
-
-
 }

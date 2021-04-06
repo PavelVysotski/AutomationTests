@@ -16,7 +16,7 @@ public class Driver {
     public static RemoteWebDriver getDriver() {
         ConfigFileReader configFileReader = new ConfigFileReader();
         System.setProperty("webdriver.chrome.driver", configFileReader.getDriverPath());
-        var implicitlyWait = configFileReader.getImplicitlyWait();
+        int implicitlyWait = configFileReader.getImplicitlyWait();
         if (driver == null) {
             switch (configFileReader.getDriverType()) {
                 case "chrome":
